@@ -32,7 +32,7 @@
                 <a href="{% url 'hourly' %}{% if request.GET.city %}?city={{ request.GET.city }}{% endif %}">Hourly</a>
             </div>
             <div class="col-4 text-center">
-                <a href="#">Daily</a>
+                <a href="{% url 'daily' %}{% if request.GET.city %}?city={{ request.GET.city }}{% endif %}">Daily</a>
             </div>
         </div>
         <hr>

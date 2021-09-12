@@ -2,7 +2,7 @@
 {% load weather_tags %}
 
 {% block main %}
-    {% if hourly != None %}
+    {% if daily != None %}
 
     <div class="row">
         <div class="col-1"></div>
@@ -29,28 +29,31 @@
             <div class="col-4 text-center">
                 <a href="{% url 'current' %}{% if request.GET.city %}?city={{ request.GET.city }}{% endif %}">Info</a>
             </div>
-            <div class="col-4 text-center fw-bold">
-                Hourly
-            </div>
             <div class="col-4 text-center">
-                <a href="{% url 'daily' %}{% if request.GET.city %}?city={{ request.GET.city }}{% endif %}">Daily</a>
+                <a href="{% url 'hourly' %}{% if request.GET.city %}?city={{ request.GET.city }}{% endif %}">Hourly</a>
+            </div>
+            <div class="col-4 text-center fw-bold">
+                Daily
             </div>
         </div>
         <hr>
-        {% for hour in hourly %}
+        {% for day in daily %}
         <div class="row fs-2">
         <div class="col-4 pr">
-            <span class="vc fs-4 w-100 text-center">{{ hour.timestamp_local | hourly_time }}</span>
+            <span class="vc fs-4 w-100 text-center">{{ day.datetime | daily_time }}</span>
         </div>
-            <div class="col-2"><img src="{{ hour | icon }}" class="m-15"
+            <div class="col-2"><img src="{{ day | icon }}" class="m-15"
                  style="margin-top: -20px; margin-bottom: -20px"></div>
             <div class="col-3 pr">
-                <span class="vc thin ">{{ hour.temp | floatformat:0 }}&deg;</span>
+                <span class="vc thin">
+                    {{ day.low_temp | floatformat:0 }}&deg; /
+                    <span style="font-weight: normal">{{ day.high_temp | floatformat:0 }}&deg;</span>
+                </span>
             </div>
             <div class="col-3 pr">
                 <span class="vc thin fs-3 r">
                     <img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/raindrop.svg" class="m-15"
-                 style="margin: -10px; width: 48px;">{{ hour.precip }} %</span>
+                 style="margin: -10px; width: 48px;">{{ day.precip }} %</span>
             </div>
         </div>
         <hr>
@@ -59,5 +62,5 @@
     {% else %}
         <h2><span class="text-primary">{{ request.GET.city }} </span>Not Found</h2>
     {% endif %}
-{#    {{ hourly }}#}
+{#    {{ daily }}#}
 {% endblock %}

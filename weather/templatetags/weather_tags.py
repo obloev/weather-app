@@ -10,6 +10,8 @@ register = template.Library()
 @register.filter
 def icon(forecast):
     f = open('data.json')
+    if 'pod' not in forecast.keys():
+        forecast['pod'] = 'd'
     data = json.load(f)
     f.close()
     return data[forecast['pod']][str(forecast['weather']['code'])]
@@ -37,3 +39,9 @@ def get_tz_time(date, timezone):
 def hourly_time(date):
     date_time = parser.parse(date)
     return date_time.strftime('%H:%M\n%d.%m')
+
+
+@register.filter
+def daily_time(date):
+    date_time = parser.parse(date)
+    return date_time.strftime('%d %B')

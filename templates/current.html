@@ -80,16 +80,16 @@
             </div>
         </div>
         <hr>
-        <div class="row fs-2">
-            <div class="col-2"><img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/raindrop.svg" class="m-15"
-                 style="margin-top: -20px; margin-bottom: -20px"></div>
-            <div class="col-5 pr">
-                <span class="vc">Precipitation</span>
-            </div>
-            <div class="col-5 pr">
-                <span class="vc thin">{{ current.pop }} %</span>
-            </div>
-        </div>
+{#        <div class="row fs-2">#}
+{#            <div class="col-2"><img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/raindrop.svg" class="m-15"#}
+{#                 style="margin-top: -20px; margin-bottom: -20px"></div>#}
+{#            <div class="col-5 pr">#}
+{#                <span class="vc">Precipitation</span>#}
+{#            </div>#}
+{#            <div class="col-5 pr">#}
+{#                <span class="vc thin">{{ current.pop }} %</span>#}
+{#            </div>#}
+{#        </div>#}
         <hr>
         <div class="row fs-2">
             <div class="col-2"><img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/cloudy.svg" class="m-15"
@@ -105,5 +105,5 @@
     {% else %}
         <h2><span class="text-primary">{{ request.GET.city }} </span>Not Found</h2>
     {% endif %}
-{#    {{ current }}#}
+    {{ current }}
 {% endblock %}

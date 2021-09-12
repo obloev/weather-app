@@ -76,7 +76,7 @@
                 <span class="vc">Wind</span>
             </div>
             <div class="col-5 pr">
-                <span class="vc thin">{{ current.wind_spd | floatformat:1 }} km/h</span>
+                <span class="vc thin">{{ current.wind_spd | floatformat:1 }} m/s</span>
             </div>
         </div>
         <hr>
@@ -90,7 +90,7 @@
 {#                <span class="vc thin">{{ current.pop }} %</span>#}
 {#            </div>#}
 {#        </div>#}
-        <hr>
+{#        <hr>#}
         <div class="row fs-2">
             <div class="col-2"><img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/cloudy.svg" class="m-15"
                  style="margin-top: -20px; margin-bottom: -20px"></div>
@@ -98,12 +98,12 @@
                 <span class="vc">Clouds</span>
             </div>
             <div class="col-5 pr">
-                <span class="vc thin">{{ current.clouds | floatformat:1 }} %</span>
+                <span class="vc thin">{{ current.clouds }} %</span>
             </div>
         </div>
         <hr>
     {% else %}
         <h2><span class="text-primary">{{ request.GET.city }} </span>Not Found</h2>
     {% endif %}
-    {{ current }}
+{#    {{ current }}#}
 {% endblock %}

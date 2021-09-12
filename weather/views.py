@@ -11,3 +11,15 @@ def current(request):
         'current': response[0],
     })
 
+
+def hourly(request):
+    city = request.GET.get('city', 'London')
+    response = get_forecast(city, 'hourly')
+    response_current = None
+    if response != None:
+        response_current = get_forecast(city, 'current')[0]
+    return render(request, 'hourly.html', {
+        'current': response_current,
+        'hourly': response,
+    })
+

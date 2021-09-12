@@ -31,3 +31,9 @@ def get_tz_time(date, timezone):
     tz_time = dateTime.astimezone(timeZone)
     print(tz_time)
     return tz_time.strftime('%H:%M')
+
+
+@register.filter
+def hourly_time(date):
+    date_time = parser.parse(date)
+    return date_time.strftime('%H:%M\n%d.%m')

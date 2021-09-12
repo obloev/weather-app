@@ -24,6 +24,18 @@
         </div>
     </div>
     <hr>
+        <div class="row fs-3">
+            <div class="col-4 text-center fw-bold">
+                Info
+            </div>
+            <div class="col-4 text-center">
+                <a href="{% url 'hourly' %}{% if request.GET.city %}?city={{ request.GET.city }}{% endif %}">Hourly</a>
+            </div>
+            <div class="col-4 text-center">
+                <a href="#">Daily</a>
+            </div>
+        </div>
+        <hr>
         <div class="row fs-2">
             <div class="col-2"><img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/compass.svg" class="m-15"
                  style="margin-top: -20px; margin-bottom: -20px"></div>

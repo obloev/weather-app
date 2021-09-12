@@ -25,7 +25,6 @@ def get_forecast(city, forecast_type):
         'x-rapidapi-key': choice(keys)
     }
     response = requests.get(url, headers=headers, params={"city": city})
-    print(response.text, '-')
     if response.text == '':
         return None
     if 'message' in response.json().keys():

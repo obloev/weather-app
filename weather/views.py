@@ -13,7 +13,7 @@ def current(request):
 
 
 def hourly(request):
-    city = request.GET.get('city', 'London')
+    city = request.GET.get('city', 'Ghijduwon')
     response = get_forecast(city, 'hourly')
     response_current = None
     if response != None:
@@ -25,7 +25,7 @@ def hourly(request):
 
 
 def daily(request):
-    city = request.GET.get('city', 'London')
+    city = request.GET.get('city', 'Ghijduwon')
     response = get_forecast(city, 'daily')
     response_current = None
     if response != None:

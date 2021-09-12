@@ -19,12 +19,25 @@
         {% block title %}
         {% endblock %}
     </title>
+    <style>
+        .vc {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .pr {
+            position: relative;
+        }
+        .thin {
+            font-weight: 200;
+        }
+    </style>
 </head>
 <body style="font-family: 'Titillium Web', sans-serif;">
     <div class="container col-md-8">
-        <nav class="navbar navbar-dark fixed-top" style="background-color: rgb(100,149,237)">
+        <nav class="navbar navbar-dark fixed-top bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand">{% block city %}{% endblock %}</a>
+                <a class="navbar-brand">weather<span style="opacity: 0.6">-site-app</span></a>
                 <form class="d-flex" action=".">
                     <input class="form-control me-2" type="search" placeholder="Type city ..." aria-label="Search" name="city">
                     <button class="btn btn-outline-light" type="submit">Search</button>
@@ -34,6 +47,9 @@
         <br><br><br>
         {% block main %}
         {% endblock %}
+        <div style="position: relative; top: 100%" class="text-center lead w-100">
+            &copy; Obloev Komronbek
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
             integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"

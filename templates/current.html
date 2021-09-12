@@ -1,14 +1,6 @@
 {% extends 'base.html' %}
 {% load weather_tags %}
 
-{% block city %}
-    {% if current != None %}
-        {{ current.city_name }}, {{ current.country_code }} ({% tz_time current.timezone %})
-    {% else %}
-        Not Found
-    {% endif %}
-{% endblock %}
-
 {% block main %}
     {% if current != None %}
 
@@ -18,7 +10,7 @@
             <img src="{{ current | icon }}" class="m-20" alt="Not Found">
         </div>
         <div class="col-6" style="position: relative;">
-            <div style="position: absolute; top: 50%; transform: translateY(-50%)">
+            <div class="vc">
                 <p class="display-1 m-0" style="font-weight: 200">
                     {{ current.temp | floatformat:0 }}&deg;
                 </p>
@@ -26,49 +18,80 @@
                     {{ current.weather.description }}
                 </p>
                 <p class="fs-2 m-0">
-                    Feels like <span style="font-weight: 200">{{ current.app_temp }}&deg;</span>
+                    {{ current.city_name }}, {{ current.country_code }}
                 </p>
             </div>
         </div>
     </div>
     <hr>
-        <div class="row lead">
+        <div class="row fs-2">
+            <div class="col-2"><img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/compass.svg" class="m-15"
+                 style="margin-top: -20px; margin-bottom: -20px"></div>
+            <div class="col-5 pr">
+                <span class="vc">Current Time:</span>
+            </div>
+            <div class="col-5 pr">
+                <span class="vc thin">{% tz_time current.timezone %}</span>
+            </div>
+        </div>
+        <hr>
+        <div class="row fs-2">
             <div class="col-2"><img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/sunrise.svg" class="m-15"
                  style="margin-top: -20px; margin-bottom: -20px"></div>
-            <div class="col-6">Sunrise</div>
-        <div class="col-4">12:23</div>
+            <div class="col-5 pr">
+                <span class="vc">Sunrise</span>
+            </div>
+            <div class="col-5 pr">
+                <span class="vc thin">{{ current.sunrise | get_tz_time:current.timezone }}</span>
+            </div>
         </div>
-    <div class="row text-center lead">
-        <div class="col-3">
-            <img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/sunrise.svg" class="m-15"
-                 style="margin-top: -20px; margin-bottom: -20px">
-            <p class="m-0">12:31</p>
+        <hr>
+        <div class="row fs-2">
+            <div class="col-2"><img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/sunset.svg" class="m-15"
+                 style="margin-top: -20px; margin-bottom: -20px"></div>
+            <div class="col-5 pr">
+                <span class="vc">Sunset</span>
+            </div>
+            <div class="col-5 pr">
+                <span class="vc thin">{{ current.sunset| get_tz_time:current.timezone }}</span>
+            </div>
         </div>
-        <div class="col-3">
-            <img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/wind.svg" class="m-15"
-                 style="margin-top: -20px; margin-bottom: -20px">
-            <p class="m-0"> {{ current.wind_spd | floatformat:1 }} km/h</p>
+        <hr>
+        <div class="row fs-2">
+            <div class="col-2"><img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/wind.svg" class="m-15"
+                 style="margin-top: -20px; margin-bottom: -20px"></div>
+            <div class="col-5 pr">
+                <span class="vc">Wind</span>
+            </div>
+            <div class="col-5 pr">
+                <span class="vc thin">{{ current.wind_spd | floatformat:1 }} km/h</span>
+            </div>
         </div>
-        <div class="col-3">
-            <img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/raindrop.svg" class="m-15"
-                 style="margin-top: -20px; margin-bottom: -20px">
-            <p class="m-0">{{ current.precip }} %</p>
+        <hr>
+        <div class="row fs-2">
+            <div class="col-2"><img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/raindrop.svg" class="m-15"
+                 style="margin-top: -20px; margin-bottom: -20px"></div>
+            <div class="col-5 pr">
+                <span class="vc">Precipitation</span>
+            </div>
+            <div class="col-5 pr">
+                <span class="vc thin">{{ current.precip | floatformat:1 }} %</span>
+            </div>
         </div>
-        <div class="col-3">
-            <img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/sunset.svg" class="m-15"
-                 style="margin-top: -20px; margin-bottom: -20px">
-            <p class="m-0">18:32</p>
+        <hr>
+        <div class="row fs-2">
+            <div class="col-2"><img src="https://bmcdn.nl/assets/weather-icons/v2.1/line/cloudy.svg" class="m-15"
+                 style="margin-top: -20px; margin-bottom: -20px"></div>
+            <div class="col-5  pr">
+                <span class="vc">Clouds</span>
+            </div>
+            <div class="col-5 pr">
+                <span class="vc thin">{{ current.clouds | floatformat:1 }} %</span>
+            </div>
         </div>
-    </div>
-    <hr>
+        <hr>
     {% else %}
         <h2><span class="text-primary">{{ request.GET.city }} </span>Not Found</h2>
     {% endif %}
-{#    <div class="row text-center">#}
-{#        <div class="col-6 btn btn-outline-primary">#}
-{#            <p class="display-4 m-0">Daily 16</p>#}
-{#            <p class="m-0 display-5">{{ current.city_name }}</p>#}
-{#        </div>#}
-{#    </div>#}
-    {{ current }}
+{#    {{ current }}#}
 {% endblock %}

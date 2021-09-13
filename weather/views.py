@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from weather.utils import get_forecast
+from weather.utils import forecast
 
 
 def current(request):
     city = request.GET.get('city', 'Ghijduwon')
-    response = get_forecast(city, 'current')
+    response = forecast.get_forecast(city, 'current')
     if response is None:
         response = [None]
     return render(request, 'current.html', {
@@ -14,10 +14,10 @@ def current(request):
 
 def hourly(request):
     city = request.GET.get('city', 'Ghijduwon')
-    response = get_forecast(city, 'hourly')
+    response = forecast.get_forecast(city, 'hourly')
     response_current = None
     if response is not None:
-        response_current = get_forecast(city, 'current')[0]
+        response_current = forecast.get_forecast(city, 'current')[0]
     return render(request, 'hourly.html', {
         'current': response_current,
         'hourly': response,
@@ -26,10 +26,10 @@ def hourly(request):
 
 def daily(request):
     city = request.GET.get('city', 'Ghijduwon')
-    response = get_forecast(city, 'daily')
+    response = forecast.get_forecast(city, 'daily')
     response_current = None
     if response is not None:
-        response_current = get_forecast(city, 'current')[0]
+        response_current = forecast.get_forecast(city, 'current')[0]
     return render(request, 'daily.html', {
         'current': response_current,
         'daily': response,

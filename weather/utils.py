@@ -11,6 +11,8 @@ keys = [
     'a71c7aa390msh522ca5e399c79cfp19a1f4jsn74ddc6c80b8d',
 ]
 
+key = 0
+
 urls = {
     'current': 'https://weatherbit-v1-mashape.p.rapidapi.com/current',
     'hourly': 'https://weatherbit-v1-mashape.p.rapidapi.com/forecast/hourly',
@@ -19,12 +21,14 @@ urls = {
 
 
 def get_forecast(city, forecast_type):
+    global key
     url = urls[forecast_type]
     headers = {
         'x-rapidapi-host': "weatherbit-v1-mashape.p.rapidapi.com",
-        'x-rapidapi-key': choice(keys)
+        'x-rapidapi-key': keys[key]
     }
     response = requests.get(url, headers=headers, params={"city": city})
+    key = (key + 1) % len(keys)
     if response.text == '':
         return None
     if 'message' in response.json().keys():

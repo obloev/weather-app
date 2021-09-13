@@ -27,11 +27,9 @@ def tz_time(timezone):
 @register.filter
 def get_tz_time(date, timezone):
     dateTime = parser.parse(date)
-    print(dateTime)
     dateTime = dateTime.replace(tzinfo=utc)
     timeZone = tz(timezone)
     tz_time = dateTime.astimezone(timeZone)
-    print(tz_time)
     return tz_time.strftime('%H:%M')
 
 

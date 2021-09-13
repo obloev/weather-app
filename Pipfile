@@ -8,6 +8,7 @@ django = "*"
 requests = "*"
 gunicorn = "*"
 python-dateutil = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

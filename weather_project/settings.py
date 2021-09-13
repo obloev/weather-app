@@ -1,9 +1,13 @@
 from pathlib import Path
+import os
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-&utby(8a%q159x8j&6@e4in2wzu!f6^u_p+(r&*$7ap+^+^^za'
-DEBUG = True
+load_dotenv()
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = False
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 

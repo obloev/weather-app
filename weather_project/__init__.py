@@ -1,1 +1,1 @@
-"""weather-project by Obloev Komronbek"""
+"""weather-project by Obloev Komronbek."""

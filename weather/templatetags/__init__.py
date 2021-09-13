@@ -1,1 +1,1 @@
-"""templatetags for weather"""
+"""templatetags for weather."""
